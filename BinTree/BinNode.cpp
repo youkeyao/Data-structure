@@ -1,6 +1,6 @@
 #include "BinNode.h"
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\Stack\Stack_Vector\Stack_Vector.h"
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\Queue\Queue.h"
+#include "Stack\Stack_Vector\Stack_Vector.h"
+#include "Queue\Queue.h"
 
 template <typename T>
 int BinNode<T>::size() { //统计当前节点后代总数，即以其为根的子树规模
