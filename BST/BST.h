@@ -1,6 +1,6 @@
 #ifndef BST_h
 #define BST_h
-    #include "C:\Users\youykeyao\Desktop\code\VC\c++\BinTree\BinTree.cpp" //引入BinTree
+    #include "BinTree\BinTree.cpp" //引入BinTree
 
     template <typename T>
     class BST : public BinTree<T> { //由BinTree派生BST模板类
