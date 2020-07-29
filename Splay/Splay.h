@@ -1,6 +1,6 @@
 #ifndef Splay_h
 #define Splay_h
-    #include "C:\Users\youykeyao\Desktop\code\VC\c++\BST\BST.cpp" //基于BST实现Splay
+    #include "BST\BST.cpp" //基于BST实现Splay
     template <typename T> class Splay : public BST<T> { //由BST派生的Splay树模板类
     protected:
         BinNode<T>* splay ( BinNode<T>* v ); //将节点v伸展至根
