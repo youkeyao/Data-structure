@@ -1,6 +1,6 @@
 #ifndef RedBlack_h
 #define RedBlack_h
-    #include "C:\Users\youykeyao\Desktop\code\VC\c++\BST\BST.cpp" //基于BST实现RedBlack
+    #include "BST\BST.cpp" //基于BST实现RedBlack
 
     #define IsBlack(p) ( ! (p) || ( RB_BLACK == (p)->color ) ) //外部节点也视作黑节点
     #define IsRed(p) ( ! IsBlack(p) ) //非黑即红
