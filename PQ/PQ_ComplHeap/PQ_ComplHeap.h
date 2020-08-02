@@ -1,8 +1,8 @@
 #ifndef PQ_ComplHeap_h
 #define PQ_ComplHeap_h
 
-    #include "Vector\Vector.cpp" //借助多重继承机制，基于向量
-    #include "PQ\PQ.h" //按照优先级队列ADT实现的
+    #include "C:\Users\youykeyao\Desktop\code\VC\c++\Vector\Vector.cpp" //借助多重继承机制，基于向量
+    #include "C:\Users\youykeyao\Desktop\code\VC\c++\PQ\PQ.h" //按照优先级队列ADT实现的
 
     #define  Parent(i)         ( ( ( i ) - 1 ) >> 1 ) //PQ[i]的父节点（floor((i-1)/2)，i无论正负）
     #define  LChild(i)         ( 1 + ( ( i ) << 1 ) ) //PQ[i]的左孩子
@@ -10,7 +10,7 @@
     #define  InHeap(n, i)      ( ( ( -1 ) < ( i ) ) && ( ( i ) < ( n ) ) ) //判断PQ[i]是否合法
     #define  LChildValid(n, i) InHeap( n, LChild( i ) ) //判断PQ[i]是否有一个（左）孩子
     #define  RChildValid(n, i) InHeap( n, RChild( i ) ) //判断PQ[i]是否有两个孩子
-    #define  Bigger(PQ, i, j)  ( lt( PQ[i], PQ[j] ) ? j : i ) //取大者（等时前者优先）
+    #define  Bigger(PQ, i, j)  ( ( PQ[i] < PQ[j] ) ? j : i ) //取大者（等时前者优先）
     #define  ProperParent(PQ, n, i) /*父子（至多）三者中的大者*/ \
                 ( RChildValid(n, i) ? Bigger( PQ, Bigger( PQ, i, LChild(i) ), RChild(i) ) : \
                 ( LChildValid(n, i) ? Bigger( PQ, i, LChild(i) ) : i \
@@ -44,7 +44,7 @@
     int percolateUp ( T* A, int i ) { //上滤
         while ( 0 < i ) { //在抵达堆顶之前，反复地
            int j = Parent ( i ); //考查[i]之父亲[j]
-           if ( lt ( A[i], A[j] ) ) break; //一旦父子顺序，上滤旋即完成；否则
+           if ( A[i] < A[j] ) break; //一旦父子顺序，上滤旋即完成；否则
            swap ( A[i], A[j] ); i = j; //父子换位，并继续考查上一层
         } //while
         return i; //返回上滤最终抵达的位置

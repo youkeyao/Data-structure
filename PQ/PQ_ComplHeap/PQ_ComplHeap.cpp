@@ -7,7 +7,7 @@ void PQ_ComplHeap<T>::insert ( T e ) { //将词条插入完全二叉堆中
 }
 
 template <typename T>
-T PQ_ComplHeap<T>::getMax(){ return this->_root->data; } //按照此处约定，堆顶即优先级最高的词条
+T PQ_ComplHeap<T>::getMax(){ return this->_elem[0]; } //按照此处约定，堆顶即优先级最高的词条
 
 template <typename T>
 T PQ_ComplHeap<T>::delMax() { //删除非空完全二叉堆中优先级最高的词条
