@@ -1,8 +1,8 @@
 #ifndef PQ_LeftHeap_h
 #define PQ_LeftHeap_h
 
-    #include "C:\Users\youykeyao\Desktop\code\VC\c++\PQ\PQ.h" //引入优先级队列ADT
-    #include "C:\Users\youykeyao\Desktop\code\VC\c++\BinTree\BinTree.cpp" //引入二叉树节点模板类
+    #include "PQ\PQ.h" //引入优先级队列ADT
+    #include "BinTree\BinTree.cpp" //引入二叉树节点模板类
 
     template <typename T>
     class PQ_LeftHeap : public PQ<T>, public BinTree<T> { //基于二叉树，以左式堆形式实现的PQ
