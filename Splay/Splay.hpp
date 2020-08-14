@@ -1,7 +1,7 @@
 #ifndef Splay_hpp
 #define Splay_hpp
 
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\BST\BST.hpp" //基于BST实现Splay
+#include "BST\BST.hpp" //基于BST实现Splay
 
 template <typename T> class Splay : public BST<T> { //由BST派生的Splay树模板类
 
@@ -76,7 +76,8 @@ BinNode<T>* Splay<T>::insert ( const T& e ) { //将关键码e插入伸展树中
     return this->_root; //新节点必然置于树根，返回之
 } //无论e是否存在于原树中，返回时总有_root->data == e
 
-template <typename T> bool Splay<T>::remove ( const T& e ) { //从伸展树中删除关键码e
+template <typename T>
+bool Splay<T>::remove ( const T& e ) { //从伸展树中删除关键码e
     if ( !this->_root || ( e != search ( e )->data ) ) return false; //若树空或目标不存在，则无法删除
     BinNode<T>* w = this->_root; //assert: 经search()后节点e已被伸展至树根
     if ( ! ( this->_root->lc ) ) { //若无左子树，则直接删除
