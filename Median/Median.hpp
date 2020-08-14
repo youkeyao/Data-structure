@@ -1,7 +1,7 @@
 #ifndef Median_hpp
 #define Median_hpp
 
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\Vector\Vector.hpp"
+#include "Vector\Vector.hpp"
 
 template <typename T> //子向量S1[lo1, lo1 + n1)和S2[lo2, lo2 + n2)分别有序，数据项可能重复
 T trivialMedian ( Vector<T>& S1, int lo1, int n1, Vector<T>& S2, int lo2, int n2 ) {
