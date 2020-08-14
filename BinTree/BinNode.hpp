@@ -1,8 +1,8 @@
 #ifndef BinNode_hpp
 #define BinNode_hpp
 
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\Stack\Stack_Vector\Stack_Vector.h"
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\Queue\Queue.h"
+#include "Stack\Stack_Vector\Stack_Vector.h"
+#include "Queue\Queue.h"
 
 typedef enum { RB_RED, RB_BLACK} RBColor; //节点颜色
 
