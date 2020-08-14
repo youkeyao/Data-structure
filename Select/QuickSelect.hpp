@@ -1,7 +1,7 @@
 #ifndef QuickSelect_hpp
 #define QuickSelect_hpp
 
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\Vector\Vector.hpp"
+#include "Vector\Vector.hpp"
 
 template <typename T>
 void quickSelect ( Vector<T> & A, int k ) { //基于快速划分的k选取算法
