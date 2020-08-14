@@ -1,4 +1,4 @@
-#ifndef BST_hpp
+#ifndef BST_h
 #define BST_hpp
 
 #include "BinTree\BinTree.hpp" //引入BinTree
