@@ -1,8 +1,8 @@
 #ifndef PQ_ComplHeap_hpp
 #define PQ_ComplHeap_hpp
 
-    #include "C:\Users\youykeyao\Desktop\code\VC\c++\Vector\Vector.hpp" //借助多重继承机制，基于向量
-    #include "C:\Users\youykeyao\Desktop\code\VC\c++\PQ\PQ.h" //按照优先级队列ADT实现的
+    #include "Vector\Vector.hpp" //借助多重继承机制，基于向量
+    #include "PQ\PQ.h" //按照优先级队列ADT实现的
 
     #define  Parent(i)         ( ( ( i ) - 1 ) >> 1 ) //PQ[i]的父节点（floor((i-1)/2)，i无论正负）
     #define  LChild(i)         ( 1 + ( ( i ) << 1 ) ) //PQ[i]的左孩子
