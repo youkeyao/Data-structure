@@ -1,7 +1,7 @@
 #ifndef BST_hpp
 #define BST_hpp
 
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\BinTree\BinTree.hpp" //引入BinTree
+#include "BinTree\BinTree.hpp" //引入BinTree
 
 #define EQUAL(e, v)  (!(v) || (e) == (v)->data) //节点v（或假想的通配哨兵）的关键码等于e
 
