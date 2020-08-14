@@ -1,7 +1,7 @@
 #ifndef Majority_hpp
 #define Majority_hpp
 
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\Vector\Vector.hpp"
+#include "Vector\Vector.hpp"
 
 template <typename T>
 bool majority ( Vector<T> A, T& maj ) { //众数查找算法：T可比较可判等
