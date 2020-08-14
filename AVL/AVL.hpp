@@ -1,7 +1,7 @@
 #ifndef AVL_hpp
 #define AVL_hpp
 
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\BST\BST.hpp" //基于BST实现AVL树
+#include "BST\BST.hpp" //基于BST实现AVL树
 
 #define Balanced(x) ( stature( (x).lc ) == stature( (x).rc ) ) //理想平衡条件
 #define BalFac(x) ( stature( (x).lc ) - stature( (x).rc ) ) //平衡因子
