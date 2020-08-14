@@ -1,7 +1,7 @@
 #ifndef HeapSort_hpp
 #define HeapSort_hpp
 
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\PQ\PQ_ComplHeap\PQ_ComplHeap.hpp"
+#include "PQ\PQ_ComplHeap\PQ_ComplHeap.hpp"
 
 template <typename T>
 void heapSort ( T* _elem, int lo, int hi ) { //0 <= lo < hi <= size
