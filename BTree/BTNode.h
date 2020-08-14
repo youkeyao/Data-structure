@@ -1,5 +1,6 @@
 #ifndef BTNode_h
 #define BTNode_h
+
     #include "Vector\Vector.hpp"
 
     template <typename T>
@@ -17,4 +18,5 @@
             if ( lc ) lc->parent = this; if ( rc ) rc->parent = this;
         }
     };
+
 #endif
