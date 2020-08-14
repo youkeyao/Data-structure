@@ -1,8 +1,8 @@
 #ifndef Graph_h
 #define Graph_h
 
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\Stack\Stack_Vector\Stack_Vector.h"
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\Queue\Queue.h"
+#include "Stack\Stack_Vector\Stack_Vector.h"
+#include "Queue\Queue.h"
 
 typedef enum { UNDISCOVERED, DISCOVERED, VISITED } VStatus; //顶点状态
 typedef enum { UNDETERMINED, TREE, CROSS, FORWARD, BACKWARD } EType; //边在遍历树中所属的类型
