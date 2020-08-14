@@ -1,8 +1,8 @@
 #ifndef PQ_LeftHeap_hpp
 #define PQ_LeftHeap_hpp
 
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\PQ\PQ.h" //引入优先级队列ADT
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\BinTree\BinTree.hpp" //引入二叉树节点模板类
+#include "PQ\PQ.h" //引入优先级队列ADT
+#include "BinTree\BinTree.hpp" //引入二叉树节点模板类
 
 template <typename T>
 void _swap( T& a, T& b){
