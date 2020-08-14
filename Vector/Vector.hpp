@@ -2,8 +2,8 @@
 #define Vector_hpp
 
 #include <cstdlib>
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\Sort\MergeSort.hpp"
-#include "C:\Users\youykeyao\Desktop\code\VC\c++\Search\FibSearch.hpp"
+#include "Sort\MergeSort.hpp"
+#include "Search\FibSearch.hpp"
 
 #define DEFAULT_CAPACITY  3 //默认的初始容量（实际应用中可设置为更大）
 
