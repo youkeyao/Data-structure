@@ -1,6 +1,6 @@
 #ifndef BTNode_h
 #define BTNode_h
-    #include "Vector\Vector.cpp"
+    #include "Vector\Vector.hpp"
 
     template <typename T>
     struct BTNode { //B-树节点模板类
