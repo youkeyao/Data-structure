@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stack</title>
+
+  <link rel="stylesheet" type="text/css" href="../main.css">
+  <script type="text/javascript" src="../velocity.js" defer></script>
+  <script type="text/javascript" src="../main.js" defer></script>
+  <script type="text/javascript" src="stack.js" defer></script>
+</head>
+<body>
+  <div class="up">
+    <div class="input-box">
+      <select id="select">
+        <option value ="String">String</option>
+        <option value ="Number">Number</option>
+      </select>
+      <input id="input">
+    </div>
+    <button onclick="push()">Push</button>
+    <button onclick="pop()">Pop</button>
+  </div>
+  <div class="shadow"></div>
+  <div class="down"><canvas class="draw"></canvas></div>
+</body>
+</html>
