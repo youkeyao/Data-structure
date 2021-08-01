@@ -11,8 +11,7 @@ function push() {
     top: "50%",
     left: (60+len*80)+"px"
   }, {
-    duration: 500,
-    delay: 0
+    duration: DURATION
   }).then(() => {
     enableInput();
   });
@@ -25,14 +24,12 @@ function pop() {
   let result = stack.pop();
   disableInput();
   Velocity(result, {
-    top: "0",
-    left: "0"
+    top: "-50px",
+    left: "-50px"
   }, {
-    duration: 500,
-    delay: 0
+    duration: DURATION
   }).then(() => {
     root.removeChild(result);
-  }).then(() => {
     enableInput();
   });
   len --;

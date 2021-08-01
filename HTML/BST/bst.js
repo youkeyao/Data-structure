@@ -11,8 +11,7 @@ function insert() {
     choosing.children[0].classList.toggle("choosing");
     choosing.style.top = "60px";
     choosing.style.left = (60+preorder_list.indexOf(tree_root)*80)+"px";
-    let current = tree_root ? (data < tree_root.data ? tree_root.left : tree_root.right) : null;
-    search(choosing, current, tree_root, data).then((result) => {
+    search(choosing, tree_root, data).then((result) => {
       root.removeChild(choosing);
       if (insert_node(result, n)) {
         resolve();
@@ -39,8 +38,7 @@ function remove() {
     choosing.children[0].classList.toggle("choosing");
     choosing.style.top = "60px";
     choosing.style.left = (60+preorder_list.indexOf(tree_root)*80)+"px";
-    let current = tree_root ? (data < tree_root.data ? tree_root.left : tree_root.right) : null;
-    search(choosing, current, tree_root, data).then((result) => {
+    search(choosing, tree_root, data).then((result) => {
       root.removeChild(choosing);
       if (result && result.data == data) {
         let pos = preorder_list.indexOf(result);
@@ -49,23 +47,39 @@ function remove() {
             top: preorder_list[pos+1].element.offsetTop + "px",
             left: preorder_list[pos+1].element.offsetLeft + "px"
           }, {
-            duration: 500
+            duration: DURATION
           });
           Velocity(preorder_list[pos+1].element, {
             top: preorder_list[pos].element.offsetTop + "px",
             left: preorder_list[pos].element.offsetLeft + "px"
           }, {
-            duration: 500
+            duration: DURATION
           }).then(() => {
-            root.removeChild(preorder_list[pos+1].element);
+            let element = preorder_list[pos+1].element;
             preorder_list.splice(pos+1, 1);
-            resolve(Math.max(pos-1, 0));
+            Velocity(element, {
+              top: "-50px",
+              left: "-50px"
+            }, {
+              duration: DURATION
+            }).then(() => {
+              root.removeChild(element);
+            });
+            resolve(Math.min(pos+1, preorder_list.length - 1));
           });
         }
         else {
-          root.removeChild(preorder_list[pos].element);
+          let element = preorder_list[pos].element;
           preorder_list.splice(pos, 1);
-          resolve(Math.max(pos-1, 0));
+          Velocity(element, {
+            top: "-50px",
+            left: "-50px"
+          }, {
+            duration: DURATION
+          }).then(() => {
+            root.removeChild(element);
+          });
+          resolve(Math.min(pos, preorder_list.length - 1));
         }
       }
       else {

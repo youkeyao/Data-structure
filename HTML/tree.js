@@ -27,6 +27,7 @@ function update_depth(node) {
 }
 
 function update_height(node) {
+  if (!node) return;
   let left_height = node.left ? node.left.height : -1;
   let right_height = node.right ? node.right.height : -1;
   node.height = Math.max(left_height, right_height) + 1;
@@ -57,24 +58,28 @@ function change_parent_pointer(node, tochange) {
 function connect34(l_node, m_node, r_node, T0, T1, T2, T3, g, d) {
   let p = g.parent;
   change_parent_pointer(g, m_node);
-  l_node.left = T0;
   if (T0) {
     T0.parent = l_node;
   }
-  l_node.right = T1;
   if (T1) {
     T1.parent = l_node;
   }
-  r_node.left = T2;
   if (T2) {
     T2.parent = r_node;
   }
-  r_node.right = T3;
   if (T3) {
     T3.parent = r_node;
   }
-  l_node.parent = m_node;
-  r_node.parent = m_node;
+  if (l_node) {
+    l_node.left = T0;
+    l_node.right = T1;
+    l_node.parent = m_node;
+  }
+  if (r_node) {
+    r_node.left = T2;
+    r_node.right = T3;
+    r_node.parent = m_node;
+  }
   m_node.left = l_node;
   m_node.right = r_node;
   m_node.parent = p;
@@ -86,26 +91,28 @@ function connect34(l_node, m_node, r_node, T0, T1, T2, T3, g, d) {
   return m_node;
 }
 
-function search(choosing, current, parent, data) {
+function search(choosing, node, data) {
   return new Promise((resolve) => {
-    if (!parent) {
+    if (!node) {
       resolve(null);
-    }
-    else if (!current || parent.data == data) {
-      setTimeout(() => {
-        resolve(parent);
-      }, 500);
     }
     else {
       Velocity(choosing, {
-        top: (choosing.offsetTop+80)+"px",
-        left: (60+preorder_list.indexOf(current)*80)+"px"
+        top: node.element.offsetTop+"px",
+        left: node.element.offsetLeft+"px"
       }, {
-        duration: 500
+        duration: DURATION
       }).then(() => {
-        search(choosing, data < current.data ? current.left : current.right, current, data).then((result) => {
-          resolve(result);
-        });
+        if ((data < node.data && !node.left) || (data > node.data && !node.right) || (data == node.data)) {
+          setTimeout(() => {
+            resolve(node);
+          }, DURATION);
+        }
+        else {
+          search(choosing, data < node.data ? node.left : node.right, data).then((result) => {
+            resolve(result);
+          });
+        }
       });
     }
   });
@@ -175,7 +182,7 @@ function update(pos) {
         top: (60+preorder_list[i].depth*80)+"px",
         left: (60+i*80)+"px"
       }, {
-        duration: 500
+        duration: DURATION
       });
     }
     let id = setInterval(() => {
@@ -185,13 +192,13 @@ function update(pos) {
         context.moveTo(tree_root.element.offsetLeft, 0);
         context.lineTo(tree_root.element.offsetLeft, tree_root.element.offsetTop);
         context.stroke();
-        select.disabled = true;
+        type_select.disabled = true;
       }
       else {
-        select.disabled = false;
+        type_select.disabled = false;
       }
       let queue = [tree_root];
-      while(queue.length != 0) {
+      while (queue.length != 0) {
         let e = queue.shift();
         if (e && e.left) {
           queue.push(e.left);
@@ -217,6 +224,6 @@ function update(pos) {
       clearInterval(id);
       enableInput();
       resolve();
-    }, 500);
+    }, DURATION + INTERVAL);
   });
 }

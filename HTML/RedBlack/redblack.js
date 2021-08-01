@@ -13,8 +13,7 @@ function insert() {
     choosing.children[0].classList.toggle("choosing");
     choosing.style.top = "60px";
     choosing.style.left = (60+preorder_list.indexOf(tree_root)*80)+"px";
-    let current = tree_root ? (data < tree_root.data ? tree_root.left : tree_root.right) : null;
-    search(choosing, current, tree_root, data).then((result) => {
+    search(choosing, tree_root, data).then((result) => {
       root.removeChild(choosing);
       if (insert_node(result, n)) {
         resolve();
@@ -27,7 +26,6 @@ function insert() {
   }).then(() => {
     update(preorder_list.indexOf(n)).then(() => {
       check_RB_insert(n);
-      update(0);
     });;
   });
 }
@@ -45,40 +43,55 @@ function remove() {
     choosing.children[0].classList.toggle("choosing");
     choosing.style.top = "60px";
     choosing.style.left = (60+preorder_list.indexOf(tree_root)*80)+"px";
-    let current = tree_root ? (data < tree_root.data ? tree_root.left : tree_root.right) : null;
-    search(choosing, current, tree_root, data).then((result) => {
+    search(choosing, tree_root, data).then((result) => {
       root.removeChild(choosing);
       if (result && result.data == data) {
         let pos = preorder_list.indexOf(result);
-        if (!remove_node(result)) {
-          old_color = preorder_list[pos].element.children[0].style.backgroundColor;
+        let res = remove_node(result);
+        old_color = preorder_list[pos].element.children[0].style.backgroundColor;
+        if (!res) {
           preorder_list[pos].element.children[0].style.backgroundColor = preorder_list[pos+1].element.children[0].style.backgroundColor;
           preorder_list[pos+1].element.children[0].style.backgroundColor = old_color;
           Velocity(preorder_list[pos].element, {
             top: preorder_list[pos+1].element.offsetTop + "px",
             left: preorder_list[pos+1].element.offsetLeft + "px"
           }, {
-            duration: 500
+            duration: DURATION
           });
           Velocity(preorder_list[pos+1].element, {
             top: preorder_list[pos].element.offsetTop + "px",
             left: preorder_list[pos].element.offsetLeft + "px"
           }, {
-            duration: 500
+            duration: DURATION
           }).then(() => {
             let parent = preorder_list[pos+1].parent;
             let node = preorder_list[pos+1].right;
-            root.removeChild(preorder_list[pos+1].element);
+            let element = preorder_list[pos+1].element;
             preorder_list.splice(pos+1, 1);
+            Velocity(element, {
+              top: "-50px",
+              left: "-50px"
+            }, {
+              duration: DURATION
+            }).then(() => {
+              root.removeChild(element);
+            });
             resolve([parent, node]);
           });
         }
         else {
-          old_color = preorder_list[pos].element.children[0].style.backgroundColor;
           let parent = preorder_list[pos].parent;
           let node = preorder_list[pos].left ? preorder_list[pos].left : preorder_list[pos].right;
-          root.removeChild(preorder_list[pos].element);
+          let element = preorder_list[pos].element;
           preorder_list.splice(pos, 1);
+            Velocity(element, {
+              top: "-50px",
+              left: "-50px"
+            }, {
+              duration: DURATION
+            }).then(() => {
+              root.removeChild(element);
+            });
           resolve([parent, node]);
         }
       }
@@ -91,12 +104,11 @@ function remove() {
     let pos = preorder_list.indexOf(result[1]);
     update(pos >= 0 ? pos : 0).then(() => {
       check_RB_remove(result[0], result[1], old_color);
-      update(0);
     });
   });
 }
 
-function check_RB_insert(node) {
+async function check_RB_insert(node) {
   if (!node.parent) {
     node.element.children[0].style.backgroundColor = "black";
   }
@@ -106,7 +118,9 @@ function check_RB_insert(node) {
       node.parent.element.children[0].style.backgroundColor = "black";
       uncle.element.children[0].style.backgroundColor = "black";
       node.parent.parent.element.children[0].style.backgroundColor = "red";
+      await update(0);
       check_RB_insert(node.parent.parent);
+      return;
     }
     else {
       let g = node.parent.parent;
@@ -137,9 +151,10 @@ function check_RB_insert(node) {
       }
     }
   }
+  update(0);
 }
 
-function check_RB_remove(parent, node, old_color) {
+async function check_RB_remove(parent, node, old_color) {
   if (!parent) {
     if (node) node.element.children[0].style.backgroundColor = "black";
   }
@@ -150,14 +165,15 @@ function check_RB_remove(parent, node, old_color) {
         brother.element.children[0].style.backgroundColor = "black";
         parent.element.children[0].style.backgroundColor = "red";
         connect34(parent, brother, brother.right, node, brother.left, brother.right.left, brother.right.right, parent, 1);
-        check_RB_remove(parent, node, "black");
       }
       else {
         brother.element.children[0].style.backgroundColor = "black";
         parent.element.children[0].style.backgroundColor = "red";
         connect34(brother.left, brother, parent, brother.left.left, brother.left.right, brother.right, node, parent, 1);
-        check_RB_remove(parent, node, "black");
       }
+      await update(0);
+      check_RB_remove(parent, node, "black");
+      return;
     }
     else {
       if (brother.left && brother.left.element.children[0].style.backgroundColor == "red") {
@@ -197,6 +213,7 @@ function check_RB_remove(parent, node, old_color) {
       }
     }
   }
+  update(0);
 }
 
 function getUncle(node) {
